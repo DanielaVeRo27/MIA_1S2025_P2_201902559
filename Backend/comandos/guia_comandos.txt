@@ -1,0 +1,94 @@
+COMANDOS --------------------------------------
+
+    1. MKDISK -> Crea un archivo binario simulando un disco con extension .mia 
+        + PARAMETROS que tiene --------------
+            -size -> OBLIGATORIO Num, tamaño al disco a crear. * num>0
+            -fit -> OPCIONAL -- ajuste de particiones
+                + BF → Best Fit.
+                + FF → First Fit (por defecto si no se especifica).
+                + WF → Worst Fit.
+
+        #Al crear un disdo duro se debe de crearun MBR al iniico de todo
+        
+        ----- PARTICIONES => División lógica de un disco, el sistema de archivos 
+        tratan como unidad separada 
+            + Valores 
+                - status -> montada o no 
+                - type -> Primaria o Extendida 
+                - fit -> B, F, W 
+                - start -> inicia la particion 
+                - name -> nombre de la particion
+                - correlativo  -> valor inial -1, hasta que sea montado luego  va incrementanddo 
+                - id -> id de la particion generado al montar 
+             // para poder usar una particion  debe de ser montada -> asignarle in punto de montaje letra o carpeta
+             montar particion que el sistema la reconoce por lo qu epuede leer/escribir en ella 
+
+    2. RMDISK -> Elimina el archivo del disco duro 
+        + PARAMETROS ---
+            - path -> OBLIGATORIO -> ruta de archivo por eliminar 
+    
+    3. FDISK -> comando para la administración de particiones --->> crear, eliminar o modificar
+        +PARAMETROS ---------
+            - size -> OBLIGATORIO -> tamaño de la particion a crear
+            - unit -> OPCIONAL ->  BYTE, MEGABYTE, KILOBYTE || por defecto va el kilobhte 
+            - path -> OBLIGATORIO   ->  ruta en la q se encuentra el archivo // ya debe de existir 
+            - type -> OPCIONAL -> tipo de particion P, E, L || Por defecto P 
+            - fit -> OPCIONAL -> ajuste de particion BF, FF, WF 
+            - name -> OBLIGATORIO 
+
+    4. Mount -> comando para montar una particion en la memoria del sistena, -> le asigna un ID unico 
+        el cual ese id unico es para que pueda ser utilizado en operaciones ->> creacion de archivos 
+        lectura o escritura de datos
+        # cuando el SO necesita saber cuál está activa y lista para usarse 
+            - Vefifica si el disco existe, busaca la particion dentro del disco por su nombre 
+            Asihna un ID unico a la particion y la registra en ina lista de particiones montadas             
+        + PARAMETROS ------------------------------
+            - path -> ruta donde el disco se encuentra 
+            - name nombre de la particion al montar 
+    5. Mounted -> comando para mostrar todas las particiones montadas en memoria 
+
+    6. MKFS   -> realiza un formateo completo de la particion, se formatea como ext2, también creará un
+        archivo en la raíz llamado users.txt que tendrá los  usuarios  y  contraseñas  del  sistema  de 
+        archivos. 
+        1. elimina los datos anteriores 
+        2. crea la estructura del sistema de archivos (EXT2)
+        3. alista la particion para que pueda ser usada y asi poder guardar carpetas y archivos 
+        
+        + PARAMETROS
+            - id -> OBLIGATORIO -> Indicara el id que se generó en el cmd mount -> si no existe dara error °| se
+                usa para saber la particion y el disco que se va usar para hacer el sistema de archivos 
+            - type -> OPCIONAL - FULL 
+
+
+
+
+    
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------
+dudas de que es 
+
+
+-Fit -> es la ajuste que se va a usar para asignar espaciol dentro del disco para
+particiones 
+
+    - BF (Best Fit - Mejor Ajuste)
+        -Selecciona el espacio más pequeño que sea suficiente para la partición.
+        
+    - FF (First Fit - Primer Ajuste) [Por defecto]
+        -Se asigna la primera sección de espacio libre que sea suficiente.
+    
+    - WF (Worst Fit - Peor Ajuste)
+        -Se selecciona el espacio más grande disponible.
+
+
+-- buffer crea un espacio en memoria de 1MB para almacenar datos temporalmente.
+
+MBR -> contiene toda la información del discp 
+
