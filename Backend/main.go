@@ -2,6 +2,8 @@ package main
 
 import (
 	analizador "Backend/analizador"
+	"time"
+
 	//analyzer "backend/analyzer" // Importa el paquete "analyzer" desde el directorio "backend/analyzer"
 	"fmt"
 	"log"     // Importa el paquete "log" para registrar mensajes de error
@@ -17,6 +19,12 @@ func main() {
 
 	// Configurar el middleware CORS
 	app.Use(cors.New())
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.JSON(fiber.Map{
+			"status": "ok",
+			"time":   time.Now(),
+		})
+	})
 
 	// Definir la ruta POST para recibir el comando del usuario
 	app.Post("/analyze", func(c *fiber.Ctx) error {

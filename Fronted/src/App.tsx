@@ -19,7 +19,8 @@ export default function Component() {
 
   const handleExecute = async () => {
     try {
-      const response = await fetch("http://localhost:3000/analyze", {
+      // const response = await fetch("http://localhost:3000/analyze", { linea que voy a cambiar 
+      const response = await fetch("http://3.144.13.106:3000/analyze", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
